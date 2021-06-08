@@ -86,51 +86,25 @@ const TableList: React.FC<{}> = () => {
   // @ts-ignore
   const columns: ProColumns<TableListItem>[] = [
     {
-      title: '规则名称',
-      dataIndex: 'name',
-      tip: '规则名称是唯一的 key',
-      formItemProps: {
-        rules: [
-          {
-            required: true,
-            message: '规则名称为必填项',
-          },
-        ],
-      },
-      render: (dom, entity) => {
-
-        return <a onClick={() => {
-          setRow(entity)
-        }
-        }>{dom}</a>;
-      },
-    },
-    {
-      title: '描述',
-      dataIndex: 'desc',
+      title: '图片',
+      dataIndex: 'image',
       valueType: 'textarea',
     },
     {
-      title: '服务调用次数',
-      dataIndex: 'callNo',
-      sorter: true,
+      title: '标题',
+      dataIndex: 'headline',
+      valueType: 'textarea',
+    },
+
+    {
+      title: '正文',
+      dataIndex: 'content',
       hideInForm: true,
-      renderText: (val: string) => `${val} 万`,
+      valueType: 'textarea',
     },
     {
-      title: '状态',
-      dataIndex: 'status',
-      hideInForm: true,
-      valueEnum: {
-        0: {text: '关闭', status: 'Default'},
-        1: {text: '运行中', status: 'Processing'},
-        2: {text: '已上线', status: 'Success'},
-        3: {text: '异常', status: 'Error'},
-      },
-    },
-    {
-      title: '上次调度时间',
-      dataIndex: 'updatedAt',
+      title: '上传时间',
+      dataIndex: 'lastdate',
       sorter: true,
       valueType: 'dateTime',
       hideInForm: true,
@@ -156,10 +130,10 @@ const TableList: React.FC<{}> = () => {
             setStepFormValues(record);
           }}
         >
-          配置
+          修改
         </a>,
         <Divider type="vertical"/>,
-        <a href="">订阅警报</a>,
+        <a href="">删除</a>,
       ],
     },
   ];
@@ -178,7 +152,9 @@ const TableList: React.FC<{}> = () => {
             <PlusOutlined/> 新建
           </Button>,
         ]}
-        request={(params, sorter, filter) => queryRule({...params, sorter, filter})}
+        request={(params, sorter, filter) =>
+       queryRule({...params, sorter, filter})
+        }
         columns={columns}
         rowSelection={{
           onChange: (_, selectedRows) => setSelectedRows(selectedRows),

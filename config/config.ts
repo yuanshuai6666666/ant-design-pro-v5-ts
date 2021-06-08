@@ -164,14 +164,17 @@ export default defineConfig({
                   ],
                 },
                 {
-                  path: '/',
-                  redirect: '/list/table-list',
-                },
-                {
                   name: 'table-list',
                   icon: 'smile',
                   path: '/list/table-list',
                   component: './list/table-list',
+                  hideInMenu:true,
+                },
+                {
+                  name: 'table-list',
+                  icon: 'smile',
+                  path: '/list/regulatorApp',
+                  component: './list/regulatorApp',
                 },
                 {
                   name: 'basic-list',
